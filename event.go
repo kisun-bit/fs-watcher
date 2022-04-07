@@ -28,5 +28,5 @@ func (e Event) String() string {
 			return "RenameTo"
 		}
 	}
-	return ""
+	return "Unknown"
 }

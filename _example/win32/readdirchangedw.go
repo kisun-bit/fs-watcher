@@ -2,33 +2,33 @@ package main
 
 import (
 	"fmt"
-	go_watcher "github.com/kisun-bit/go-watcher"
+	watcher "github.com/kisun-bit/go-watcher"
 )
 
 func main() {
-	w, err := go_watcher.NewWatcher("C:\\", true)
+	w, err := watcher.NewWatcher("C:\\", true)
 	if err != nil {
-		fmt.Println("NewWatcher Error: %s", err.Error())
+		fmt.Println("NewWatcher Error: ", err.Error())
 		return
 	}
 	cs, err := w.Start()
 	if err != nil {
-		fmt.Println("Start Error: %s", err.Error())
+		fmt.Println("Start Error: ", err.Error())
 		return
 	}
 
 	for c := range cs {
 		switch c.Action {
-		case go_watcher.Win32EventCreate:
+		case watcher.Win32EventCreate:
 			fmt.Println("++++++++++++++++++++ ", c.String())
-		case go_watcher.Win32EventDelete:
+		case watcher.Win32EventDelete:
 			fmt.Println("-------------------- ", c.String())
-		case go_watcher.Win32EventUpdate:
+		case watcher.Win32EventUpdate:
 			fmt.Println("#################### ", c.String())
-		case go_watcher.Win32EventRenameTo:
+		case watcher.Win32EventRenameTo:
 			fmt.Println(">>>>>>>>>>>>>>>>>>>> ", c.String())
-		case go_watcher.Win32EventRenameFrom:
-			fmt.Println("<<<<<<<<<<<<<<<<<<<<", c.String())
+		case watcher.Win32EventRenameFrom:
+			fmt.Println("<<<<<<<<<<<<<<<<<<<< ", c.String())
 		}
 	}
 }

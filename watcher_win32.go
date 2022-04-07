@@ -76,7 +76,7 @@ func (w *Win32Watcher) asyncLoop() (err error) {
 			w.collectChangeInfo()
 		}
 	}()
-	return nil
+	return
 }
 
 func (w *Win32Watcher) readDirectoryChanges() (err error) {
